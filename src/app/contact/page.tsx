@@ -30,7 +30,6 @@ export default function ContactPage() {
       const res = await fetch('/api/booking', { method: 'POST', body: formData });
       if (res.ok) {
         alert('Booking request sent successfully! Proceed to payment.');
-        // Optionally redirect: window.location.href = '/success';
       } else {
         alert('Something went wrong. Please try again.');
       }
@@ -55,7 +54,7 @@ export default function ContactPage() {
             
             <div className="mt-8 space-y-6">
                 <div className="bg-white/60 p-6 rounded-2xl border border-rose-100 shadow-sm">
-                    <h4 className="text-sm font-bold uppercase text-rose-500 mb-3">Booking an Appointment (NO WALK-IN)</h4>
+                    <h4 className="text-sm font-bold uppercase text-rose-500 mb-3">3. Booking an Appointment (NO WALK-IN)</h4>
                     <ul className="text-sm text-gray-600 space-y-2 list-disc pl-4">
                         <li>Kindly choose a date and time of your convenience.</li>
                         <li>A non-refundable deposit of <strong>GH₵50</strong> is required to validate your booking.</li>
@@ -65,7 +64,7 @@ export default function ContactPage() {
                 
                 <div className="bg-white/60 p-6 rounded-2xl border border-rose-100 shadow-sm">
                     <h4 className="text-sm font-bold uppercase text-rose-500 mb-1">Location</h4>
-                    <p className="text-sm text-gray-600">Ashongman Estate 2<sup>nd</sup> Lotto Kiosk</p>
+                    <p className="text-sm text-gray-600">Ashongman Estate</p>
                 </div>
             </div>
         </div>
@@ -76,17 +75,29 @@ export default function ContactPage() {
             <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label className="text-xs uppercase font-bold text-gray-400">Name</label>
-                    <input name="name" required className="w-full border-b border-gray-200 py-3 focus:border-rose-400 outline-none" placeholder="Jane Doe" />
+                    <input name="name" required className="w-full border-b border-gray-200 py-3 focus:border-rose-400 outline-none text-gray-900 placeholder-gray-400" placeholder="Jane Doe" />
                 </div>
                 <div className="space-y-2">
                     <label className="text-xs uppercase font-bold text-gray-400">Email</label>
-                    <input name="email" type="email" required className="w-full border-b border-gray-200 py-3 focus:border-rose-400 outline-none" placeholder="jane@example.com" />
+                    <input name="email" type="email" required className="w-full border-b border-gray-200 py-3 focus:border-rose-400 outline-none text-gray-900 placeholder-gray-400" placeholder="jane@example.com" />
                 </div>
+            </div>
+
+            {/* Added Date and Time Field */}
+            <div className="space-y-2">
+                <label className="text-xs uppercase font-bold text-gray-400">Preferred Date & Time</label>
+                <input 
+                  type="datetime-local" 
+                  name="date" 
+                  required 
+                  className="w-full border-b border-gray-200 py-3 focus:border-rose-400 outline-none text-gray-900 bg-white" 
+                />
             </div>
 
             <div className="space-y-2">
                 <label className="text-xs uppercase font-bold text-gray-400">Treatment Wishlist</label>
-                <select name="service" className="w-full border-b border-gray-200 py-3 focus:border-rose-400 outline-none bg-white">
+                {/* Added text-gray-900 here to fix visibility issues */}
+                <select name="service" className="w-full border-b border-gray-200 py-3 focus:border-rose-400 outline-none bg-white text-gray-900">
                     <option value="">Select a service...</option>
                     <option value="Microneedling">Microneedling</option>
                     <option value="Chemical Peel">Chemical Peel</option>
@@ -117,4 +128,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
