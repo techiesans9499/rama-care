@@ -20,7 +20,9 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const formData = new FormData(e.currentTarget);
+    
+    const form = e.currentTarget; // Capture the form element
+    const formData = new FormData(form);
     
     // Append images manually
     images.forEach((file) => formData.append('images', file));
@@ -29,6 +31,13 @@ export default function ContactPage() {
       const res = await fetch('/api/booking', { method: 'POST', body: formData });
       if (res.ok) {
         alert('Booking request sent! Check your email for confirmation.');
+        
+        // --- CLEAR DATA LOGIC ---
+        form.reset();       // Clears inputs (Text, Date, Select)
+        setImages([]);      // Clears image state
+        setPreviews([]);    // Clears image thumbnails
+        // ------------------------
+
       } else {
         alert('Something went wrong. Please try again.');
       }

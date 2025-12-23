@@ -25,6 +25,33 @@ export async function POST(request: Request) {
         });
     }
 
+    // ---------------------------------------------------------
+    // NEW: Send to Google Sheets
+    // ---------------------------------------------------------
+    try {
+        if (process.env.GOOGLE_SHEET_URL) {
+            const sheetData = new URLSearchParams();
+            sheetData.append('name', name);
+            sheetData.append('email', email);
+            sheetData.append('phone', phone);
+            sheetData.append('service', service);
+            sheetData.append('date', new Date(date).toLocaleString());
+
+            await fetch(process.env.GOOGLE_SHEET_URL, {
+                method: 'POST',
+                body: sheetData,
+            });
+            console.log('Google Sheet updated');
+        } else {
+            console.log('GOOGLE_SHEET_URL not set, skipping sheet update.');
+        }
+    } catch (sheetError) {
+        // We log the error but DO NOT stop the request, 
+        // ensuring the email/DB parts still happen.
+        console.error('Google Sheet Error:', sheetError);
+    }
+    // ---------------------------------------------------------
+
     // 2. Send Emails
     try {
         const transporter = nodemailer.createTransport({
