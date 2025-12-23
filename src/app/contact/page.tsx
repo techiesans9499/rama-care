@@ -54,7 +54,7 @@ export default function ContactPage() {
             
             <div className="mt-8 space-y-6">
                 <div className="bg-white/60 p-6 rounded-2xl border border-rose-100 shadow-sm">
-                    <h4 className="text-sm font-bold uppercase text-rose-500 mb-3">3. Booking an Appointment (NO WALK-IN)</h4>
+                    <h4 className="text-sm font-bold uppercase text-rose-500 mb-3">Booking an Appointment (NO WALK-IN)</h4>
                     <ul className="text-sm text-gray-600 space-y-2 list-disc pl-4">
                         <li>Kindly choose a date and time of your convenience.</li>
                         <li>A non-refundable deposit of <strong>GH₵50</strong> is required to validate your booking.</li>
